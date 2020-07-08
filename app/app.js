@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 // Import our routes
-const tenantRoutes = require('./routes/tenant');
+const tenantRoutes = require('../routes/tenant');
 
 // Connect to MongoDB
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
