@@ -15,7 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Use CORS
-app.use(cors())
+app.use(cors({
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Accepts', 'Content-Type', 'Authorization']
+}))
 
 // Use our routes
 app.use('/tenants', tenantRoutes)
