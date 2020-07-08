@@ -1,4 +1,6 @@
-const http = require('http');
-const server = http.createServer();
+const http = require('http')
+const app = require('./app')
 
-server.listen(process.env.PORT || 8008);
+const server = http.createServer(app)
+
+server.listen(process.env.PORT || 8008)
