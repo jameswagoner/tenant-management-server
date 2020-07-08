@@ -1,12 +1,17 @@
 const express = require('express')
 const app = express()
 const logger = require('morgan')
+const bodyParser = require('body-parser')
 
 // Import our routes
 const tenantRoutes = require('./routes/tenant');
 
 // Use a logger
 app.use(logger('dev'))
+
+// Use body-parser
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // Use our routes
 app.use('/tenants', tenantRoutes)
