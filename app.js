@@ -2,10 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('morgan')
+const mongoose = require('mongoose')
 const app = express()
 
 // Import our routes
 const tenantRoutes = require('./routes/tenant');
+
+// Connect to MongoDB
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 // Use a logger
 app.use(logger('dev'))
