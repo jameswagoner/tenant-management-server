@@ -2,8 +2,7 @@ const Tenant = require('../Models/Tenant')
 
 module.exports = {
   all: (req, res) => {
-    Tenant
-      .find()
+    Tenant.find()
       .then(tenants => {
         res.status(200).json({
           tenants: tenants
@@ -19,8 +18,7 @@ module.exports = {
       .catch(err => console.log(err))
   },
   create: (req, res) => {
-    Tenant
-      .create({
+    Tenant.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName
       })
