@@ -1,6 +1,4 @@
-const http = require('http')
-const app = require('./app/app')
+const server = require('./server/app')();
 
-const server = http.createServer(app)
-
-server.listen(process.env.SERVER_PORT || 8008)
+server.create()
+server.start()
