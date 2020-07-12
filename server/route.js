@@ -1,4 +1,5 @@
 const tenant = require('./routes/tenant')
+const invoice = require('./routes/invoice')
 
 const init = (server) => {
   // Use defined routes
@@ -8,6 +9,7 @@ const init = (server) => {
   })
 
   server.use('/tenants', tenant)
+  server.use('/invoices', invoice)
 
   // Use 404 route
   server.use((req, res, next) => {

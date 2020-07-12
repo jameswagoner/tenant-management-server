@@ -1,4 +1,5 @@
-const Tenant = require('../Models/Tenant')
+const { model } = require('../Models/Tenant')
+const Tenant = model
 
 module.exports = {
   all: (req, res) => {
@@ -11,7 +12,7 @@ module.exports = {
       .catch(err => console.log(err))
   },
   find: (req, res) => {
-    Tenant.findById(req.params.id)
+    Tenant.findById(req.params.tenant)
       .then(tenant => {
         res.status(200).json(tenant)
       })
@@ -26,6 +27,13 @@ module.exports = {
         res.status(200).json({
           tenant: tenant
         })
+      })
+      .catch(err => console.log(err))
+  },
+  invoices: (req, res) => {
+    Tenant.findById(req.params.tenant)
+      .then(tenant => {
+        res.status(200).json(tenant.invoices)
       })
       .catch(err => console.log(err))
   }

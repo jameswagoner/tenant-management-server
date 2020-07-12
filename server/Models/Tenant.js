@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
+const Invoice = require('./Invoice')
 
-const schema = mongoose.Schema({
+const Tenant = mongoose.Schema({
   firstName: String,
-  lastName: String
+  lastName: String,
+  invoices: [Invoice.schema]
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('Tenant', schema)
+module.exports.model = mongoose.model('Tenant', Tenant)
+module.exports.schema = Tenant
