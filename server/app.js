@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const dotenv = require('dotenv')
 const express = require('express')
 const logger = require('morgan')
 const mongoose = require('mongoose')
@@ -10,6 +11,7 @@ module.exports = () => {
 
   const create = () => {
     // Env settings
+    dotenv.config();
     server.set('env', process.env.APP_ENV)
     server.set('appUrl', process.env.APP_URL)
 
