@@ -1,4 +1,4 @@
-const TenantService = require('../Services/TenantService')
+const TenantService = require('../Services/TenantService');
 
 module.exports = {
   index: TenantService.all,

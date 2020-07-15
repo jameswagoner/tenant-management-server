@@ -1,4 +1,4 @@
-const InvoiceService = require('../Services/InvoiceService')
+const InvoiceService = require('../Services/InvoiceService');
 
 module.exports = {
   index: InvoiceService.all,

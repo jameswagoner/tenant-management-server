@@ -1,4 +1,4 @@
-const Invoice = require('../Models/Invoice')
+const Invoice = require('../Models/Invoice');
 
 module.exports = {
   all: (req, res) => {

@@ -1,15 +1,15 @@
-const { verify } = require('jsonwebtoken')
+const { verify } = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-  const authHeader = req.headers.authorization
+  const authHeader = req.headers.authorization;
 
   if (!authHeader) {
     return res.status(403).json({
       status: 403,
       message: 'FORBIDDEN'
-    })
+    });
   } else {
-    const token = authHeader.split(' ')[1]
+    const token = authHeader.split(' ')[1];
 
     if (token) {
       return verify(token)
@@ -22,12 +22,12 @@ module.exports = (req, res, next) => {
             status: 401,
             message: 'UNAUTHORIZED'
           })
-        })
+        });
     } else {
       return res.status(403).json({
         status: 403,
         message: 'FORBIDDEN'
-      })
+      });
     }
   }
 }

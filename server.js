@@ -1,4 +1,4 @@
 const server = require('./server/app')();
 
-server.create()
-server.start()
+server.create();
+server.start();
