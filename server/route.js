@@ -1,5 +1,6 @@
-const tenant = require('./routes/tenant');
 const invoice = require('./routes/invoice');
+const tenant = require('./routes/tenant');
+const user = require('./routes/user');
 
 const init = (server) => {
   // Use defined routes
@@ -8,8 +9,9 @@ const init = (server) => {
       .send('Silence is golden.')
   });
 
-  server.use('/tenants', tenant);
   server.use('/invoices', invoice);
+  server.use('/tenants', tenant);
+  server.use('/users', user);
 
   // Use 404 route
   server.use((req, res, next) => {
