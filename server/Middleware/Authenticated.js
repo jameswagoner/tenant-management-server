@@ -1,4 +1,4 @@
-const { verify } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -12,17 +12,15 @@ module.exports = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     if (token) {
-      return verify(token)
-        .then(user => {
-          res.user = user
-          next()
+      try {
+        res.user = jwt.verify(token, process.env.APP_JWT_SECRET);
+        next();
+      } catch (err) {
+        return res.status(401).json({
+          status: 401,
+          message: 'UNAUTHORIZED'
         })
-        .catch((err) => {
-          return res.status(401).json({
-            status: 401,
-            message: 'UNAUTHORIZED'
-          })
-        });
+      }
     } else {
       return res.status(403).json({
         status: 403,

@@ -1,3 +1,6 @@
+const authorized = require('./Middleware/Authenticated');
+const AuthController = require('./Controllers/AuthController');
+
 const invoice = require('./routes/invoice');
 const tenant = require('./routes/tenant');
 const user = require('./routes/user');
@@ -9,9 +12,12 @@ const init = (server) => {
       .send('Silence is golden.')
   });
 
-  server.use('/invoices', invoice);
-  server.use('/tenants', tenant);
-  server.use('/users', user);
+  server.post('/login', AuthController.login);
+  server.get('/logout', authorized, AuthController.logout);
+
+  server.use('/invoices', authorized, invoice);
+  server.use('/tenants', authorized, tenant);
+  server.use('/users', authorized, user);
 
   // Use 404 route
   server.use((req, res, next) => {
@@ -24,9 +30,7 @@ const init = (server) => {
   server.use((err, req, res) => {
     res.status(err.status || 500);
     res.json({
-      error: {
-        message: err.message
-      }
+      error: err
     });
   });
 }
