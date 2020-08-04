@@ -35,7 +35,12 @@ module.exports = {
                 process.env.APP_JWT_SECRET,
                 {
                   expiresIn: "1h"
-                })
+                }),
+              user: {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+              }
             })
           }
 
