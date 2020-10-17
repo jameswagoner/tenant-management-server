@@ -20,7 +20,7 @@ module.exports = {
     User.findById(req.params.user)
       .then(user => {
         if (user) {
-          return user;
+          res.status(200).json(user);
         } else {
           res.status(404).json()
         }
