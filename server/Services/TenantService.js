@@ -1,40 +1,55 @@
-const { model } = require('../Models/Tenant');
-const Tenant = model;
+const { model } = require('../Models/User');
+const User = model;
 
 module.exports = {
   all: (req, res) => {
-    Tenant.find()
+    User.find({role: 'tenant'})
       .then(tenants => {
         res.status(200).json({
           tenants: tenants
         })
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        res.status(err.status || 500);
+        res.json({
+          error: err
+        });
+      });
   },
   find: (req, res) => {
-    Tenant.findById(req.params.tenant)
+    User.findById(req.params.tenant)
+      .then(tenant => {
+        if (tenant) {
+          res.status(200).json(tenant)
+        } else {
+          res.status(404).json();
+        }
+      })
+      .catch(err => {
+        res.status(err.status || 500);
+        res.json({
+          error: err
+        });
+      });
+  },
+  create: (req, res) => {
+    User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        role: 'tenant'
+      })
       .then(tenant => {
         res.status(200).json(tenant)
       })
-      .catch(err => console.log(err));
-  },
-  create: (req, res) => {
-    Tenant.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
-      })
-      .then(tenant => {
-        res.status(200).json({
-          tenant: tenant
-        })
-      })
-      .catch(err => console.log(err));
+      .catch(err => {
+        res.status(err.status || 500);
+        res.json({
+          error: err
+        });
+      });
   },
   invoices: (req, res) => {
-    Tenant.findById(req.params.tenant)
-      .then(tenant => {
-        res.status(200).json(tenant.invoices)
-      })
-      .catch(err => console.log(err));
+    // TODO: find invoices belonging to a tenant
+    res.status(200).json([]);
   }
 }
