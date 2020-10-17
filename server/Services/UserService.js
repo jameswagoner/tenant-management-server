@@ -19,7 +19,11 @@ module.exports = {
   find: (req, res) => {
     User.findById(req.params.user)
       .then(user => {
-        res.status(200).json(user)
+        if (user) {
+          return user;
+        } else {
+          res.status(404).json()
+        }
       })
       .catch(err => {
         res.status(err.status || 500);
