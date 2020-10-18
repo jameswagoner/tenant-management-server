@@ -3,6 +3,7 @@ const AuthController = require('./Controllers/AuthController');
 
 const invoice = require('./routes/invoice');
 const tenant = require('./routes/tenant');
+const task = require('./routes/task');
 const user = require('./routes/user');
 
 const init = (server) => {
@@ -17,6 +18,7 @@ const init = (server) => {
 
   server.use('/invoices', authorized, invoice);
   server.use('/tenants', authorized, tenant);
+  server.use('/tasks', authorized, task);
   server.use('/users', authorized, user);
 
   // Use 404 route
