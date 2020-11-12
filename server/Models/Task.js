@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Task = Schema({
-  summary: {
+  title: {
     required: true,
     type: String
   },
@@ -13,6 +13,12 @@ const Task = Schema({
   unit: {
     required: true,
     type: String
+  },
+  priority: {
+    required: true,
+    type: String,
+    default: 'normal',
+    enum: ['low', 'normal', 'high', 'emergency']
   },
   status: {
     required: true,

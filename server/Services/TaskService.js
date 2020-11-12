@@ -34,10 +34,11 @@ module.exports = {
   },
   create: (req, res) => {
     Task.create({
-      summary: req.params.summary,
-      description: req.params.description,
-      unit: req.params.unit
-    })
+        title: req.params.title,
+        description: req.params.description,
+        unit: req.params.unit,
+        priority: req.params.priority
+      })
       .then(task => {
         res.status(200).json(task)
       })
