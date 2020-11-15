@@ -1,11 +1,12 @@
 const db = require('../DbHandler');
+const expect = require('chai').expect;
 const taskService = require('../../server/Services/TaskService');
 
-beforeAll(async () => await db.connect());
+before(async () => await db.connect());
 afterEach(async () => await db.clearDatabase());
-afterAll(async () => await db.closeDatabase());
+after(async () => await db.closeDatabase());
 
-describe('task ', () => {
+describe('task', () => {
   it('can be created', () => {
     expect(() => {
       taskService.create({
@@ -15,7 +16,8 @@ describe('task ', () => {
         priority: 'low'
       })
     })
+      .to
       .not
-      .toThrow();
+      .throw();
   });
 });
