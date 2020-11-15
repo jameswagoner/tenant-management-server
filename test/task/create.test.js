@@ -8,7 +8,12 @@ afterAll(async () => await db.closeDatabase());
 describe('task ', () => {
   it('can be created', () => {
     expect(() => {
-      // todo: setup mock http request
+      taskService.create({
+        title: 'test',
+        description: 'description',
+        unit: 'unit',
+        priority: 'low'
+      })
     })
       .not
       .toThrow();
