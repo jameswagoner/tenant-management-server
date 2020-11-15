@@ -1,7 +1,6 @@
 const authorized = require('./Middleware/Authenticated');
 const AuthController = require('./Controllers/AuthController');
 
-const invoice = require('./routes/invoice');
 const tenant = require('./routes/tenant');
 const task = require('./routes/task');
 const user = require('./routes/user');
@@ -16,7 +15,6 @@ const init = (server) => {
   server.post('/login', AuthController.login);
   server.get('/logout', authorized, AuthController.logout);
 
-  server.use('/invoices', authorized, invoice);
   server.use('/tenants', authorized, tenant);
   server.use('/tasks', authorized, task);
   server.use('/users', authorized, user);
