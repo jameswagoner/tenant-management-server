@@ -1,6 +1,6 @@
-const db = require('../DbHandler');
+const db = require('../../DbHandler');
 const expect = require('chai').expect;
-const taskService = require('../../server/Services/TaskService');
+const taskService = require('../../../server/Services/TaskService');
 
 before(async () => await db.connect());
 afterEach(async () => await db.clearDatabase());
@@ -22,7 +22,7 @@ describe('Task Service', () => {
       .throw();
   });
 
-  it('requires values to create a task', () => {
+  it('requires [title, descripion, and unit] to create a task', () => {
     expect(() => {
       taskService.create()
     })
